@@ -27,6 +27,7 @@ class CartController extends Controller
             $product = $products->firstWhere('id', $item->product_id);
 
             return (object)[
+                'id' => $item->id,
                 'product' => $product,
                 'quantity' => $item->quantity,
                 'total' => $item->quantity * $product['price'],
@@ -70,4 +71,18 @@ class CartController extends Controller
         $count = Cart::where('user_id', Auth::user()->id)->sum('quantity');
         return response()->json(['count' => $count]);
     }
+
+    public function destroy(Cart $cart)
+    {
+        $cart->delete();
+
+        return response()->noContent();
+    } 
+
+    public function clean()
+    {
+        Cart::where('user_id', Auth::user()->id)->delete();
+
+        return response()->noContent();
+    } 
 }
