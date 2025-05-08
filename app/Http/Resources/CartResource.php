@@ -22,6 +22,11 @@ class CartResource extends JsonResource
                 'price' => $this->product['price'] ?? null,
                 'image_url' => $this->product['image_url'] ?? null,
                 'description' => $this->product['description'] ?? null,
+
+                'height' => $this->product['height'] ?? null,
+                'width' => $this->product['width'] ?? null,
+                'length' => $this->product['length'] ?? null,
+                'weight' => $this->product['weight'] ?? null,
             ],
             'total' => $this->quantity * ($this->product['price'] ?? 0),
         ];
